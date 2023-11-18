@@ -1,20 +1,15 @@
 "use client";
 
-import { useCartContext } from "@/context/cart-context";
 import Link from "next/link";
+
+import { useCartContext } from "@/context/cart-context";
+import { calculateTotalPrice } from "@/utils/helper";
 
 export function CartOverview() {
   const { state } = useCartContext();
 
-  const calculateTotalPrice = () => {
-    return state.cart.reduce(
-      (total, item) => total + item.price * item.quantity,
-      0
-    );
-  };
-
   return (
-    <div className="dropdown dropdown-end">
+    <div className="dropdown dropdown-end px-2">
       <label tabIndex={0} className="btn btn-ghost btn-circle">
         <div className="indicator">
           <svg
@@ -46,7 +41,7 @@ export function CartOverview() {
             {state.cart ? state.cart.length : 0} Items
           </span>
           <span className="text-info">
-            Subtotal: ${calculateTotalPrice().toFixed(2)}
+            Subtotal: ${calculateTotalPrice(state.cart).toFixed(2)}
           </span>
           <div className="card-actions">
             <button className="btn btn-primary btn-block">

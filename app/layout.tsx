@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { CartContextProvider } from "@/context/cart-context";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,14 +20,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <CartContextProvider>
-      <html lang="en">
-        <body className={`${inter.className}`}>
-          <Navbar />
-          <main className="bg-base-200">{children}</main>
-          <Footer />
-        </body>
-      </html>
-    </CartContextProvider>
+    <ClerkProvider>
+      <CartContextProvider>
+        <html lang="en">
+          <body className={`${inter.className}`}>
+            <Navbar />
+            <main className="bg-base-200">{children}</main>
+            <Footer />
+          </body>
+        </html>
+      </CartContextProvider>
+    </ClerkProvider>
   );
 }

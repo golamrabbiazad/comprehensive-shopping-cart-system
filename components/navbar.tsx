@@ -1,10 +1,15 @@
-import Image from "next/image";
 import Link from "next/link";
+import { UserButton, currentUser } from "@clerk/nextjs";
+
 import { CartOverview } from "./cart-overview";
 
-export function Navbar() {
+export async function Navbar() {
+  const user = await currentUser();
+
+  if (!user) console.error("user not found");
+
   return (
-    <nav className="navbar">
+    <nav className="navbar px-12">
       <div className="flex-1">
         <Link href="/" className="btn btn-ghost text-xl">
           Cartfy
@@ -12,35 +17,35 @@ export function Navbar() {
       </div>
       <div className="flex-none">
         <CartOverview />
-        <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <Image
-                alt="Tailwind CSS Navbar component"
-                src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                width={100}
-                height={100}
-              />
+
+        {user ? (
+          <>
+            <div className="dropdown dropdown-end">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="rounded-full">
+                  <UserButton afterSignOutUrl="/" />
+                </div>
+              </label>
             </div>
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <a className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a>Logout</a>
-            </li>
-          </ul>
-        </div>
+          </>
+        ) : (
+          <Link href="/sign-in">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-8 h-8"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+          </Link>
+        )}
       </div>
     </nav>
   );

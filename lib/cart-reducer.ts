@@ -101,3 +101,17 @@ export const cartReducer = (
 
   return state;
 };
+
+/**
+ * better design proposed
+ *
+ */
+
+/*
+{
+  cart: [
+    { item: Product, quantity },
+    { item: Product, quantity },
+  ];
+}
+*/
