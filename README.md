@@ -3,7 +3,7 @@
 First, run the development server:
 
 ```bash
-# run the local mysql database
+# run the local MySQL database
 docker compose up -d
 
 # for destroy the container
@@ -25,16 +25,16 @@ Open <http://localhost:3000> with your browser to see the result.
 
 ## Credentials
 
-For sign in,
+For sign-in,
 
-- email: <modone7203@eachart.com>
-- password: modone7203
+- ~~email: <modone7203@eachart.com>~~
+- ~~password: modone7203~~
 
 ## Production
 
-Project demo link: <https://comprehensive-shopping-cart-system.vercel.app/>
+Project demo link: ~~https://comprehensive-shopping-cart-system.vercel.app~~
 
-> can't create order beacause I've removed prod db.
+> Can't create an order because I've removed prod db.
 
 ## Tech
 
@@ -53,9 +53,9 @@ Project demo link: <https://comprehensive-shopping-cart-system.vercel.app/>
 
 ## Todo
 
-- [ ] responsive
+- [ ] Responsive
 - [ ] improve app state design
-- [ ] cart items store in localstorage
+- [ ] cart items stored in localStorage
 - [ ] improve schema design
 - [ ] admin dashboard view and authorization
-- [ ] admin order status (PENDING = default, PROCESSING,COMPLETED) management
+- [ ] admin order status (PENDING = default, PROCESSING, COMPLETED) management
